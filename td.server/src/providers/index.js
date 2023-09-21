@@ -1,4 +1,5 @@
 import github from './github.js';
+import azure from './azure.js';
 
 /**
  * An immutable object containing all
@@ -6,7 +7,8 @@ import github from './github.js';
  * @type {Object}
  */
 const all = Object.freeze({
-    github
+  github,
+  azure,
 });
 
 /**
@@ -16,20 +18,20 @@ const all = Object.freeze({
  * @returns {Object}
  */
 const get = (name) => {
-    const lowerName = (name || '').toLowerCase();
-    const provider = all[lowerName];
-    if (!provider) {
-        throw new Error(`Unknown provider: ${name}`);
-    }
+  const lowerName = (name || '').toLowerCase();
+  const provider = all[lowerName];
+  if (!provider) {
+    throw new Error(`Unknown provider: ${name}`);
+  }
 
-    if (!provider.isConfigured()) {
-        throw new Error(`Provider ${name} is not configured. See docs/development/environment.md for more info`);
-    }
+  if (!provider.isConfigured()) {
+    throw new Error(`Provider ${name} is not configured. See docs/development/environment.md for more info`);
+  }
 
-    return provider;
+  return provider;
 };
 
 export default {
-    all,
-    get
+  all,
+  get,
 };

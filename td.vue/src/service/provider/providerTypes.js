@@ -1,4 +1,5 @@
 export const providerTypes = {
     git: 'git',
-    local: 'local'
+    local: 'local',
+    azure: 'azure',
 };

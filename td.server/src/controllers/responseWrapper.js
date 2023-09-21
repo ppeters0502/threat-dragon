@@ -10,16 +10,16 @@ import errors from './errors.js';
  * @returns {*}
  */
 const sendResponse = (fn, req, res, logger) => {
-    try {
-        const respObj = {
-            status: 200,
-            data: fn()
-        };
-        return res.status(200).json(respObj);
-    } catch (e) {
-        logger.error(e);
-        return errors.serverError('Internal Server Error', res, logger);
-    }
+  try {
+    const respObj = {
+      status: 200,
+      data: fn(),
+    };
+    return res.status(200).json(respObj);
+  } catch (e) {
+    logger.error(e);
+    return errors.serverError('Internal Server Error', res, logger);
+  }
 };
 
 /**
@@ -32,19 +32,19 @@ const sendResponse = (fn, req, res, logger) => {
  * @returns {*}
  */
 const sendResponseAsync = async (asyncFn, req, res, logger) => {
-    try {
-        const data = await asyncFn();
-        return res.status(200).json({
-            status: 200,
-            data
-        });
-    } catch (e) {
-        logger.error(e);
-        return errors.serverError('Internal Server Error', res, logger);
-    }
+  try {
+    const data = await asyncFn();
+    return res.status(200).json({
+      status: 200,
+      data,
+    });
+  } catch (e) {
+    logger.error(e);
+    return errors.serverError('Internal Server Error', res, logger);
+  }
 };
 
 export default {
-    sendResponse,
-    sendResponseAsync
+  sendResponse,
+  sendResponseAsync,
 };

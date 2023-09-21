@@ -1,22 +1,30 @@
 import githubProvider from './github.provider.js';
 import localProvider from './local.provider.js';
+import azureProvider from './azure.provider.js';
 import { providerTypes } from './providerTypes.js';
 
 const providers = {
+    azure: {
+        key: 'azure',
+        displayName: 'Azure',
+        provider: azureProvider,
+        type: providerTypes.local,
+        icon: ['fab', 'windows'],
+    },
     github: {
         key: 'github',
-        displayName: 'GitHub',
+        displayName: 'Github',
         provider: githubProvider,
         type: providerTypes.git,
-        icon: ['fab', 'github']
+        icon: ['fab', 'github'],
     },
     local: {
         key: 'local',
         displayName: 'Local Session',
         provider: localProvider,
         type: providerTypes.local,
-        icon: ['fab', 'vuejs']
-    }
+        icon: ['fab', 'vuejs'],
+    },
 };
 
 export const allProviders = (() => {
@@ -25,11 +33,14 @@ export const allProviders = (() => {
 
 export const providerNames = (() => {
     const _providers = {};
-    Object.keys(providers).forEach(key => _providers[key] = providers[key].key);
+    Object.keys(providers).forEach(
+        (key) => (_providers[key] = providers[key].key)
+    );
     return Object.freeze(_providers);
 })();
 
-export const getDisplayName = (providerKey) => providers[providerKey].displayName;
+export const getDisplayName = (providerKey) =>
+    providers[providerKey].displayName;
 
 export const getProviderType = (providerKey) => providers[providerKey].type;
 
@@ -46,7 +57,9 @@ export const getDashboardActions = (providerKey) => {
     }
 
     if (!provider.provider || !provider.provider.getDashboardActions()) {
-        throw new Error(`No dashboard actions configured for provider ${providerKey}`);
+        throw new Error(
+            `No dashboard actions configured for provider ${providerKey}`
+        );
     }
 
     return provider.provider.getDashboardActions();
@@ -55,5 +68,5 @@ export const getDashboardActions = (providerKey) => {
 export default {
     allProviders,
     providerNames,
-    getDashboardActions
+    getDashboardActions,
 };

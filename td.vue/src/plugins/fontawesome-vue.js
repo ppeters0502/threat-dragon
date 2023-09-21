@@ -1,6 +1,6 @@
-import Vue from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import Vue from "vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 // Import specific icons that we want here
 import {
@@ -30,10 +30,14 @@ import {
     faFolderOpen,
     faPrint,
     faProjectDiagram,
-    faDiagramProject
-} from '@fortawesome/free-solid-svg-icons';
+    faDiagramProject,
+} from "@fortawesome/free-solid-svg-icons";
 
-import { faGithub, faVuejs } from '@fortawesome/free-brands-svg-icons';
+import {
+    faGithub,
+    faVuejs,
+    faWindows,
+} from "@fortawesome/free-brands-svg-icons";
 
 // Add icons to the library for use
 library.add(
@@ -65,7 +69,8 @@ library.add(
     faFolderOpen,
     faPrint,
     faProjectDiagram,
-    faDiagramProject
+    faDiagramProject,
+    faWindows
 );
 
-Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
